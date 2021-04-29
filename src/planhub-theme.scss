@@ -1,0 +1,174 @@
+@import "../node_modules/@angular/material/theming";
+@include mat-core();
+
+// primary colors
+$plan-hub-green-1: #1BB934;
+$plan-hub-green-2: #1AA633;
+$plan-hub-green-3: #1A8E31;
+$plan-hub-green-4: #197B30;
+$plan-hub-green-5: #18632E;
+
+// blue accents
+$plan-hub-blue-1: #C9DCEF;
+$plan-hub-blue-2: #9EC0E3;
+$plan-hub-blue-3: #71A3D6;
+$plan-hub-blue-4: #4586CA;
+$plan-hub-blue-5: #1668BD;
+
+// yellow and orange accents
+$plan-hub-yellow: #FFB318;
+$plan-hub-orange: #F86500;
+
+// text colors
+$plan-hub-text-primary: #354052;
+$plan-hub-text-secondary: #7F8FA4;
+
+// grayscale
+$plan-hub-background-1: #FFFFFF;
+$plan-hub-background-2: #EFF3F6;
+$plan-hub-shadow-1: #CBCED1;
+$plan-hub-shadow-2: #A5A8AB;
+$plan-hub-shadow-3: #838588;
+$plan-hub-logo: #626366;
+
+$plan-hub-contrast-light: #FFFFFF;
+$plan-hub-contrast-dark: $plan-hub-text-primary;
+
+$mat-plan-hub: (
+  500: $plan-hub-green-1,
+  600: $plan-hub-green-2,
+  700: $plan-hub-green-3,
+  800: $plan-hub-green-4,
+  900: $plan-hub-green-5,
+  A700: $plan-hub-orange,
+
+  contrast: (
+    500: $plan-hub-contrast-light,
+    600: $plan-hub-contrast-light,
+    700: $plan-hub-contrast-light,
+    800: $plan-hub-contrast-light,
+    900: $plan-hub-contrast-light,
+
+    A100: $plan-hub-contrast-dark,
+    A200: $plan-hub-contrast-dark,
+    A400: $plan-hub-contrast-dark,
+    A700: $plan-hub-contrast-light
+  )
+);
+
+$primary: mat-palette($mat-plan-hub, 500);
+$accent: mat-palette($mat-plan-hub, A700);
+$warn: mat-palette($mat-red, 700);
+
+$plan-hub-theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($plan-hub-theme);
+
+.dark-green {
+  $primary: mat-palette($mat-plan-hub, 900);
+  $accent: mat-palette($mat-plan-hub, A700);
+  $warn: mat-palette($mat-red, 700);
+
+  $dark-green-theme: mat-light-theme($primary, $accent, $warn);
+  @include angular-material-theme($dark-green-theme);
+}
+
+$custom-typography: mat-typography-config(
+  $font-family: "SourceSansPro"
+);
+@include mat-core($custom-typography);
+
+/*
+* typography
+*/
+@font-face {
+  font-family: "SourceSansPro";
+  src: local("SourceSansPro"), url(./assets/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf) format("truetype");
+}
+
+h1 {
+  font-size: 40px !important;
+  font-weight: bold;
+  color: $plan-hub-text-primary;
+}
+
+/*
+* form field styling
+*/
+.mat-form-field-appearance-outline.mat-focused:not(.mat-form-field-invalid, .search-form-field) .mat-form-field-outline-thick {
+  color: $plan-hub-blue-2 !important;
+}
+
+.mat-form-field-appearance-outline:not(.mat-form-field-disabled, .mat-focused, .mat-form-field-invalid) .mat-form-field-outline{
+  color: $plan-hub-text-secondary !important;
+}
+
+.mat-input-element {
+  color: $plan-hub-text-primary !important;
+}
+
+.mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-label {
+  color: $plan-hub-text-primary !important;
+}
+
+.mat-form-field.mat-focused .mat-select-arrow {
+  color: $plan-hub-blue-2 !important;
+}
+
+.mat-form-field.mat-focused input {
+  caret-color: $plan-hub-text-primary !important;
+}
+
+.mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $plan-hub-text-primary !important;
+}
+
+.mat-option:hover:not(.mat-option-disabled) {
+  background-color: $plan-hub-blue-2 !important;
+}
+
+.mat-option:focus:not(.mat-option-disabled) {
+  background-color: $plan-hub-blue-2 !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-required-marker {
+  color: #d32f2f !important;
+}
+
+.search {
+  .mat-form-field-outline-end {
+    border-radius: 0 !important;
+  }
+}
+
+/*
+* button styling
+*/
+.mat-stroked-button {
+  border-color: $plan-hub-green-1 !important;
+}
+
+button {
+  line-height: 44px !important;
+  font-size: 14px !important;
+
+  .mat-button-wrapper {
+    font-weight: bold !important;
+  }
+
+  &:hover, &:focus {
+    &:not(.search-button){
+      transform: scale(1.1) !important;
+    }
+  }
+}
+
+/*
+* Cursor Styling
+*/
+.planhub-disabled, .planhub-disabled * {
+  cursor: not-allowed !important;
+}

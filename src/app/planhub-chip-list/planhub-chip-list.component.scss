@@ -1,0 +1,37 @@
+@import "src/planhub-theme";
+
+.mat-basic-chip {
+  border: 1px solid $plan-hub-text-secondary;
+  padding: 16px 2em;
+  border-radius: 1.5em;
+  cursor: pointer;
+
+  &:hover:not(.mat-chip-disabled) {
+    border: 2px solid $plan-hub-text-secondary;
+  }
+
+  &:focus-visible:not(.mat-chip-disabled) {
+    border: 2px solid $plan-hub-text-secondary;
+    outline: none !important;
+  }
+
+  &.mat-chip-disabled {
+    border-color: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.38);
+  }
+}
+
+.planhub-chip-selected {
+  border: 2px solid $plan-hub-text-primary;
+  font-weight: bold;
+  padding: 13px 2em;
+}
+
+.blue-chip {
+  background-color: $plan-hub-blue-1 !important;
+}
+
+.white-chip {
+  background-color: white !important;
+  border: solid $plan-hub-text-secondary 1px;
+}

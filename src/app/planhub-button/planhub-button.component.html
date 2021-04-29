@@ -1,0 +1,16 @@
+<button *ngIf="buttonType === buttonTypeEnum.Primary"
+        mat-flat-button
+        color="primary"
+        [disabled]="disabled"
+        [ngClass]="{ 'planhub-disabled': disabled }">{{buttonText}}</button>
+<button *ngIf="buttonType === buttonTypeEnum.Secondary"
+        mat-stroked-button
+        color="primary"
+        [disabled]="disabled"
+        [ngClass]="{ 'planhub-disabled': disabled }">{{buttonText}}</button>
+<button *ngIf="buttonType === buttonTypeEnum.Tertiary"
+        mat-button
+        color="primary"
+        [disabled]="disabled"
+        [ngClass]="{ 'planhub-disabled': disabled }">{{buttonText}}</button>
+

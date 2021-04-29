@@ -1,0 +1,74 @@
+<div class="dark-green search">
+  <!-- regular search -->
+  <div *ngIf="autocompleteOptions.length === 0"
+       fxLayout="row"
+       [ngClass]="{ 'planhub-disabled': disabled }">
+    <mat-form-field appearance="outline" class="search-form-field">
+      <mat-label>{{label}}</mat-label>
+      <input #input
+             matInput
+             [placeholder]="placeholder"
+             [disabled]="disabled"
+             (keyup.enter)="emitSearchValue(input.value)">
+    </mat-form-field>
+    <button mat-flat-button
+            color="primary"
+            [disabled]="disabled"
+            (click)="emitSearchValue(input.value)"
+            class="search-button">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <!-- autocomplete search with string options -->
+  <div *ngIf="autocompleteOptions.length > 0 && autoCompleteOptionDisplayProperty === ''"
+       fxLayout="row"
+       [ngClass]="{ 'planhub-disabled': disabled }">
+    <mat-form-field appearance="outline" class="search-form-field">
+      <mat-label>{{label}}</mat-label>
+      <input #input
+             matInput
+             [placeholder]="placeholder"
+             (keyup.enter)="emitSearchValue(input.value)"
+             [formControl]="formControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-flat-button
+            color="primary"
+            (click)="emitSearchValue(input.value)"
+            class="search-button">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <!-- autocomplete search with object options -->
+  <div *ngIf="autocompleteOptions.length > 0 && autoCompleteOptionDisplayProperty !== ''"
+       fxLayout="row"
+       [ngClass]="{ 'planhub-disabled': disabled }">
+    <mat-form-field appearance="outline" class="search-form-field">
+      <mat-label>{{label}}</mat-label>
+      <input #input
+             matInput
+             [placeholder]="placeholder"
+             (keyup.enter)="emitSearchValue(formControl.value)"
+             [formControl]="formControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option[autoCompleteOptionDisplayProperty]}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-flat-button
+            color="primary"
+            (click)="emitSearchValue(formControl.value)"
+            class="search-button">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>

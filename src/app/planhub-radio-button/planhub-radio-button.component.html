@@ -1,0 +1,6 @@
+<mat-radio-group [attr.aria-label]="ariaLabel" [fxLayout]="fxLayout" fxLayoutGap="2em" [disabled]="disabled">
+  <mat-radio-button *ngFor="let option of options"
+                    [value]="option.value"
+                    color="primary"
+                    [ngClass]="{ 'planhub-disabled': disabled }">{{option.label}}</mat-radio-button>
+</mat-radio-group>

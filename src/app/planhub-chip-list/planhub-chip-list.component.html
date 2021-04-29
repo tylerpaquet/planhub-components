@@ -1,0 +1,25 @@
+<mat-chip-list>
+  <div [fxLayout]="fxLayout" fxLayoutGap="1em" *ngIf="chipType === chipTypeEnum.Large">
+    <div *ngFor="let chipConfig of chipConfigs">
+      <mat-basic-chip fxLayout="row"
+                      fxLayoutAlign="center center"
+                      fxLayoutGap="0.25em"
+                      (click)="clicked(chipConfig)"
+                      (keyup.space)="clicked(chipConfig)"
+                      (keyup.enter)="clicked(chipConfig)"
+                      [ngClass]="{ 'planhub-chip-selected':chipConfig.selected, 'planhub-disabled':chipConfig.disabled }"
+                      [disabled]="chipConfig.disabled">
+        <mat-icon *ngIf="chipConfig.selected">check_circle_outline</mat-icon><div>{{chipConfig.label}}</div></mat-basic-chip>
+    </div>
+  </div>
+  <div *ngIf="chipType === chipTypeEnum.Small">
+    <mat-chip *ngFor="let chipConfig of chipConfigs; let i=index"
+              [removable]="true"
+              (removed)="removeChip(i)"
+              [selectable]="false"
+              [ngClass]="{ 'blue-chip':chipColor === chipColorEnum.Blue, 'white-chip':chipColor === chipColorEnum.White }">
+      {{chipConfig.label}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </div>
+</mat-chip-list>

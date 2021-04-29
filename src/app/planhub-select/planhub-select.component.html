@@ -1,0 +1,19 @@
+<mat-form-field appearance="outline" [ngClass]="{ 'planhub-disabled': disabled }">
+  <mat-label>{{label}}</mat-label>
+  <div>
+    <mat-select (selectionChange)="emitSelectionChange($event)"
+                [multiple]="isMultiSelect"
+                [disabled]="disabled">
+      <div *ngIf="!displayProperty">
+        <mat-option *ngFor="let option of options" [value]="option">
+          {{option}}
+        </mat-option>
+      </div>
+      <div *ngIf="displayProperty">
+        <mat-option *ngFor="let option of options" [value]="option">
+          {{option[displayProperty]}}
+        </mat-option>
+      </div>
+    </mat-select>
+  </div>
+</mat-form-field>
